@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vidzo – Generate Sample Papers</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ff6f61, #ffa07a);
+      color: #fff;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    .logo span {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1f1f1f;
+    }
+    nav a {
+      margin: 0 15px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .cta-button {
+      background-color: #ff8c00;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .section {
+      display: none;
+      padding: 60px 40px;
+    }
+    .section.active {
+      display: block;
+    }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hero-text {
+      max-width: 50%;
+    }
+    .hero-text h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .hero-text p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .hero-text .buttons a {
+      margin-right: 15px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .btn-primary {
+      background-color: #ff8c00;
+      color: #fff;
+    }
+    .btn-secondary {
+      background-color: #fff;
+      color: #ff6f61;
+    }
+    .form-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      color: #333;
+      width: 300px;
+    }
+    .form-card select,
+    .form-card button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    .form-card button {
+      background-color: #800080;
+      color: #fff;
+      font-weight: bold;
+    }
+    section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #ff6f61;
+    }
+    .steps {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+    .step {
+      width: 22%;
+    }
+    .pricing {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 40px;
+    }
+    .plan {
+      background-color: #ffe4e1;
+      padding: 20px;
+      border-radius: 10px;
+      width: 25%;
+      text-align: center;
+      color: #333;
+    }
+    .plan h3 {
+      color: #ff6f61;
+      margin-bottom: 10px;
+    }
+    .plan p {
+      margin: 5px 0;
+    }
+    .compare-button {
+      display: block;
+      margin: 30px auto;
+      padding: 10px 20px;
+      background-color: #ff8c00;
+      color: #fff;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .teacher-box {
+      background-color: #ffdab9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 40px;
+      color: #333;
+    }
+    .teacher-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .teacher-box li {
+      margin-bottom: 10px;
+    }
+    .registration .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 400px;
+      margin: auto;
+      color: #333;
+    }
+    .registration h2 {
+      text-align: center;
+      color: #ff6f61;
+      margin-bottom: 30px;
+    }
+    .registration label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .registration input, .registration select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .registration button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ff6f61;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .registration button:hover {
+      background-color: #ff4500;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .footer a {
+      color: #ff6f61;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    footer {
+      padding: 20px 40px;
+      background-color: #ff6f61;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+    footer a {
+      color: #fff;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="vidzo-logo.png" alt="Vidzo Logo" />
+      <span>Vidzo</span>
+    </div>
+    <nav>
+      <a onclick="showPage('homepage')">Home</a>
+      <a onclick="showPage('registration')" class="cta-button">Get Started</a>
+    </nav>
+  </header>
+
+  <!-- Homepage Section -->
+  <div class="section active" id="homepage">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Generate Sample Papers. Your Board. Your Chapters. Your Rules.</h1>
+        <p>Practice smarter with Vidzo—the only platform that lets you customize question papers for Classes 6–12 across all major boards.</p>
+        <div class="buttons">
+          <a href="#" class="btn-primary">Try for Free</a>
+          <a href="#" class="btn-secondary">See How It Works</a>
+        </div>
+      </div>
+      <div class="form-card">
+        <select><option>Select Board</option></select>
+        <select><option>Class</option></select>
+        <select><option>Subject</option></select>
+        <button>Generate Paper</button>
+      </div>
+    </div>
+
+    <section>
+      <h2>HOW IT WORKS</h2>
+      <div class="steps">
+        <div class="step"><h3>1</h3><p>Choose Board, Class & Subject</p></div>
+        <div class="step"><h3>2</h3><p>Select Chapters</p></div>
+        <div class="step"><h3>3</h3><p>Set Difficulty & Question Type</p></div>
+        <div class="step"><h3>4</h3><p>Export as PDF or Practice Online</p></div>
+      </div>
+
+      <div class="pricing">
+        <div class="plan"><h3>FREE</h3><p>₹0</p><p>3 paper generations</p><p>Fixed marking scheme</p></div>
+        <div class="plan"><h3>BASIC</h3><p>₹999</p><p>Unlimited papers</p><p>Fixed weightage</
+
