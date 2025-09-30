@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vidzo – Generate Sample Papers</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ff6f61, #ffa07a);
+      color: #fff;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    .logo span {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1f1f1f;
+    }
+    nav a {
+      margin: 0 15px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .cta-button {
+      background-color: #ff8c00;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .section {
+      display: none;
+      padding: 60px 40px;
+    }
+    .section.active {
+      display: block;
+    }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hero-text {
+      max-width: 50%;
+    }
+    .hero-text h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .hero-text p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .hero-text .buttons a {
+      margin-right: 15px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .btn-primary {
+      background-color: #ff8c00;
+      color: #fff;
+    }
+    .btn-secondary {
+      background-color: #fff;
+      color: #ff6f61;
+    }
+    .form-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      color: #333;
+      width: 300px;
+    }
+    .form-card select,
+    .form-card button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    .form-card button {
+      background-color: #800080;
+      color: #fff;
+      font-weight: bold;
+    }
+    section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #ff6f61;
+    }
+    .steps {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+    .step {
+      width: 22%;
+    }
+    .pricing {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 40px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .plan {
+      background-color: #ffe4e1;
+      padding: 20px;
+      border-radius: 10px;
+      width: 25%;
+      text-align: center;
+      color: #333;
+      min-width: 220px;
+      position: relative;
+    }
+    .plan h3 {
+      color: #ff6f61;
+      margin-bottom: 10px;
+    }
+    .plan p {
+      margin: 5px 0;
+    }
+
+    /* PREMIUM SPECIAL */
+    .plan.premium {
+      background: linear-gradient(180deg, #fff5f7, #ffeef0);
+      border: 2px solid #ffd1dc;
+      box-shadow: 0 8px 30px rgba(255, 99, 132, 0.12);
+    }
+    .badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg,#ff8c00,#ff6f61);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      font-size: 13px;
+    }
+    .premium-features {
+      text-align: left;
+      margin-top: 15px;
+      color: #333;
+    }
+    .premium-features li {
+      margin-bottom: 8px;
+    }
+    .subscribe-button {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(90deg,#ff6f61,#ff8c00);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .compare-button {
+      display: block;
+      margin: 30px auto;
+      padding: 10px 20px;
+      background-color: #ff8c00;
+      color: #fff;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .teacher-box {
+      background-color: #ffdab9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 40px;
+      color: #333;
+    }
+    .teacher-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .teacher-box li {
+      margin-bottom: 10px;
+    }
+    .registration .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 400px;
+      margin: auto;
+      color: #333;
+    }
+    .registration h2 {
+      text-align: center;
+      color: #ff6f61;
+      margin-bottom: 30px;
+    }
+    .registration label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .registration input, .registration select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .registration button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ff6f61;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .registration button:hover {
+      background-color: #ff4500;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .footer a {
+      color: #ff6f61;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    footer {
+      padding: 20px 40px;
+      background-color: #ff6f61;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+    footer a {
+      color: #fff;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+    .modal {
+      background: #fff;
+      color: #333;
+      border-radius: 12px;
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    .modal h3 { margin-top: 0; color: #ff6f61; }
+    .close-modal { float: right; cursor: pointer; font-weight: 700; }
+
+    /* Samiksha lab */
+    .samiksha {
+      background: rgba(255,255,255,0.12);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+      color: #fff;
+    }
+    .samiksha label { display:block; margin-bottom:8px; }
+    .samiksha select, .samiksha button {
+      padding: 10px; border-radius: 6px; border: none; font-size: 16px;
+    }
+    .samiksha .locked {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    @media (max-width: 900px) {
+      .hero { flex-direction: column; gap: 20px; }
+      .hero-text { max-width: 100%; }
+      .pricing { flex-direction: column; align-items: center; }
+      .plan { width: 90%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="vidzo-logo.png" alt="Vidzo Logo" />
+      <span>Vidzo</span>
+    </div>
+    <nav>
+      <a onclick="showPage('homepage')">Home</a>
+      <a onclick="showPage('registration')" class="cta-button">Get Started</a>
+      <a onclick="openPremiumModal()" class="cta-button" style="background:#6a0dad;margin-left:10px">Premium</a>
+    </nav>
+  </header>
+
+  <!-- Homepage Section -->
+  <div class="section active" id="homepage">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Generate Sample Papers. Your Board. Your Chapters. Your Rules.</h1>
+        <p>Practice smarter with Vidzo—the only platform that lets you customize question papers for Classes 6–12 across all major boards.</p>
+        <div class="buttons">
+          <a href="#" class="btn-primary">Try for Free</a>
+          <a href="#" class="btn-secondary">See How It Works</a>
+        </div>
+      </div>
+      <div class="form-card">
+        <select><option>Select Board</option></select>
+        <select><option>Class</option></select>
+        <select><option>Subject</option></select>
+        <button>Generate Paper</button>
+      </div>
+    </div>
+
+    <section>
+      <h2>HOW IT WORKS</h2>
+      <div class="steps">
+        <div class="step"><h3>1</h3><p>Choose Board, Class & Subject</p></div>
+        <div class="step"><h3>2</h3><p>Select Chapters</p></div>
+        <div class="step"><h3>3</h3><p>Set Difficulty & Question Type</p></div>
+        <div class="step"><h3>4</h3><p>Export as PDF or Practice Online</p></div>
+      </div>
+
+      <div class="pricing" id="pricing">
+        <div class="plan">
+          <h3>FREE</h3>
+          <p>₹0</p>
+          <p>3 paper generations</p>
+          <p>Fixed marking scheme</p>
+        </div>
+
+        <div class="plan">
+          <h3>BASIC</h3>
+          <p>₹999</p>
+          <p>Unlimited papers</p>
+          <p>Fixed weightage</p>
+        </div>
+
+        <!-- PREMIUM PLAN ADDED -->
+        <div class="plan premium" id="premium-plan">
+          <div class="badge">MOST POPULAR</div>
+          <h3>PREMIUM</h3>
+          <p style="font-size:22px; font-weight:800;">₹9,999 / year</p>
+          <p>All-in-one access for serious learners</p>
+
+          <ul class="premium-features">
+            <li>• Access to <strong>Vidzoverse</strong> (video library & immersive content)</li>
+            <li>• <strong>V-learn</strong> & <strong>Vidya</strong> courses</li>
+            <li>• Downloadable <strong>Notes</strong> & resources</li>
+            <li>• <strong>AI-generated sample papers</strong> on demand</li>
+            <li>• Change marking scheme in <strong>Samiksha Lab</strong></li>
+          </ul>
+
+          <button class="subscribe-button" onclick="startSubscribe()">Subscribe ₹9,999/yr</button>
+          <button style="margin-top:8px;background:#fff;color:#ff6f61;border-radius:8px;padding:8px 12px;border:none;font-weight:700;cursor:pointer" onclick="openPremiumModal()">
+            View Details
+          </button>
+        </div>
+      </div>
+
+      <a class="compare-button" href="#" onclick="openPremiumModal()">Compare Plans</a>
+
+      <div class="teacher-box">
+        <h3>Teacher Tools</h3>
+        <ul>
+          <li>Customizable question banks</li>
+          <li>Export to PDF / answer keys</li>
+          <li>Samiksha Lab (marking analytics)</li>
+        </ul>
+      </div>
+
+      <!-- Samiksha Lab demo area to show the marking scheme toggle (locked for non-premium) -->
+      <div class="samiksha" id="samiksha-lab">
+        <h3>Samiksha Lab — Marking Scheme</h3>
+        <p id="samiksha-note">Change the marking scheme for generated papers. (Premium required to unlock)</p>
+
+        <div id="samiksha-controls" class="locked">
+          <label for="scheme">Select marking scheme</label>
+          <select id="scheme">
+            <option value="standard">Standard: 1 mark each</option>
+            <option value="weighted">Weighted: long questions more weight</option>
+            <option value="custom">Custom scheme</option>
+          </select>
+
+          <div style="margin-top:12px;">
+            <button onclick="applyScheme()" style="padding:10px 14px;border-radius:8px;border:none;font-weight:700;cursor:pointer;">Apply Scheme</button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+  </div>
+
+  <!-- Registration Section -->
+  <div class="section" id="registration">
+    <div class="registration container">
+      <h2>Get Started</h2>
+      <label>Name</label>
+      <input type="text" placeholder="Your name" id="reg-name" />
+      <label>Email</label>
+      <input type="email" placeholder="you@example.com" id="reg-email" />
+      <label>Board</label>
+      <select id="reg-board">
+        <option>CBSE</option>
+        <option>ICSE</option>
+        <option>State Board</option>
+      </select>
+      <button onclick="register()">Register</button>
+      <p style="margin-top:12px;font-size:13px;color:#666">Already have premium? <a href="#" onclick="activatePremiumFromModal()">Activate</a></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>© Vidzo 2025</div>
+    <div>
+      <a href="#" onclick="openPremiumModal()">Premium</a>
+      <a href="#">Help</a>
+      <a href="#">Privacy</a>
+    </div>
+  </footer>
+
+  <!-- PREMIUM DETAILS MODAL -->
+  <div class="modal-backdrop" id="premium-modal">
+    <div class="modal" role="dialog" aria-modal="true">
+      <span class="close-modal" onclick="closePremiumModal()">✕</span>
+      <h3>Vidzo Premium — ₹9,999 / year</h3>
+      <p><strong>What's included:</strong></p>
+      <ul>
+        <li><strong>Vidzoverse:</strong> Full video library, curated playlists & immersive tutorials.</li>
+        <li><strong>V-learn & Vidya:</strong> Structured learning paths and course content for grades 6–12.</li>
+        <li><strong>Notes:</strong> Downloadable notes, summaries and cheat-sheets.</li>
+        <li><strong>AI Sample Papers:</strong> Generate exam-style papers on demand using AI (custom boards, chapters, difficulty).</li>
+        <li><strong>Samiksha Lab:</strong> Unlock the ability to modify marking schemes, weightages, and analytics.</li>
+      </ul>
+
+      <p style="margin-top:12px;color:#333"><strong>Note:</strong> This demo page simulates premium activation. Integration with a real payment gateway is required to accept payments in production.</p>
+
+      <div style="display:flex;gap:10px;margin-top:16px;">
+        <button onclick="startSubscribe()" style="padding:10px 14px;border-radius:8px;border:none;background:#ff6f61;color:white;font-weight:800;cursor:pointer">Subscribe ₹9,999/yr</button>
+        <button onclick="closePremiumModal()" style="padding:10px 14px;border-radius:8px;border:none;background:#eee;color:#333;cursor:pointer">Maybe later</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Basic page navigation
+    function showPage(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo(0,0);
+    }
+
+    // Modal open/close
+    function openPremiumModal() {
+      document.getElementById('premium-modal').style.display = 'flex';
+    }
+    function closePremiumModal() {
+      document.getElementById('premium-modal').style.display = 'none';
+    }
+
+    // Simulated subscription flow (demo only)
+    let isPremium = false;
+
+    function startSubscribe() {
+      // Demo: prompt for confirmation and then activate premium features locally
+      const ok = confirm('Subscribe to Vidzo PREMIUM for ₹9,999 / year? (Demo flow — no payment is processed here)');
+      if (!ok) return;
+
+      // Activate premium
+      isPremium = true;
+      document.getElementById('samiksha-controls').classList.remove('locked');
+      document.getElementById('samiksha-note').textContent = 'Premium active — you can change marking schemes below.';
+      // visually mark the premium plan
+      document.getElementById('premium-plan').style.border = '3px solid #ff6f61';
+      alert('Premium activated (demo). Samiksha Lab unlocked.');
+      closePremiumModal();
+    }
+
+    function activatePremiumFromModal() {
+      openPremiumModal();
+    }
+
+    function register() {
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      if (!name || !email) {
+        alert('Please enter name and email to register.');
+        return;
+      }
+      alert('Thanks ' + name + '! Registration complete. You can subscribe to Premium from the pricing section.');
+      showPage('homepage');
+    }
+
+    // Samiksha lab apply scheme - only works if premium
+    function applyScheme() {
+      if (!isPremium) {
+        alert('This feature is available to Premium members only. Subscribe to unlock.');
+        return;
+      }
+      const scheme = document.getElementById('scheme').value;
+      // Simulate applying scheme — in real app you'd persist this selection server-side
+      alert('Applied marking scheme: ' + scheme + '. (Simulated)');
+    }
+
+    // Close modal when clicking backdrop
+    document.getElementById('premium-modal').addEventListener('click', function(e){
+      if (e.target === this) closePremiumModal();
+    });
+  </script>
+</body>
+</html>
